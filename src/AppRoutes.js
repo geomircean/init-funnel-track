@@ -15,10 +15,10 @@ const AppRoutes = () => {
 
       <div>
         <Route path="/" exact component={Home} />
-        <Route path="/about/" component={About} />
-        <Route path="/thank-you/" component={ThankYou} />
-        <Route path="/checkout/" component={Checkout} />
-        <Route path="/cart/" component={Cart} />
+        <Route path="about/" component={About} />
+        <Route path="thank-you/" component={ThankYou} />
+        <Route path="checkout/" component={Checkout} />
+        <Route path="cart/" component={Cart} />
         {/*<Route component={NoMatch} />*/}
       </div>
 
