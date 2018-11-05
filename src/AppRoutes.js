@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import NavMenu from './components/Menu';
-import { Home, About, ThankYou, Cart, Checkout, NoMatch } from './pages';
+import { Home, About, ThankYou, Cart, Checkout } from './pages';
+
 
 const AppRoutes = () => {
   return (
@@ -14,7 +15,7 @@ const AppRoutes = () => {
         <Route path="/thank-you" exact component={ThankYou} />
         <Route path="/checkout" exact component={Checkout} />
         <Route path="/cart" exact component={Cart} />
-        <Route component={NoMatch} />
+        {/*<Route component={NoMatch} />*/}
       </div>
 
     </BrowserRouter>
