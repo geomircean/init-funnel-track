@@ -8,15 +8,15 @@ const menu = [
   },
   {
     name: 'Cart',
-    route: 'cart'
+    route: '/cart'
   },
   {
     name: 'Checkout',
-    route: 'checkout'
+    route: '/checkout'
   },
   {
     name: 'About',
-    route: 'about'
+    route: '/about'
   }
 ];
 
