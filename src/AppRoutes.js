@@ -1,26 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import {
   Home,
   About,
   ThankYou,
   Cart,
   Checkout,
-  NoMatch
+  //NoMatch
 } from './pages';
 
 const AppRoutes = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
 
-      <Switch>
+      <div>
         <Route path="/" exact component={Home} />
         <Route path="/about/" component={About} />
         <Route path="/thank-you/" component={ThankYou} />
         <Route path="/checkout/" component={Checkout} />
         <Route path="/cart/" component={Cart} />
-        <Route component={NoMatch} />
-      </Switch>
+        {/*<Route component={NoMatch} />*/}
+      </div>
 
     </BrowserRouter>
   );
