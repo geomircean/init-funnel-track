@@ -1,8 +1,12 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const Checkout = () => {
-  console.log('checkout runs')
-  return (<h2>Checkout</h2>)
+  return (
+    <div>
+      <h2>Checkout</h2>
+      <Link to='/thank-you'>Hit me up!</Link>
+    </div>
+  )
 };
 
 export default Checkout;
