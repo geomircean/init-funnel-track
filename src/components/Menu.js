@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const menu = [
   {
@@ -7,15 +8,15 @@ const menu = [
   },
   {
     name: 'Cart',
-    route: '/cart'
+    route: 'cart'
   },
   {
     name: 'Checkout',
-    route: '/checkout'
+    route: 'checkout'
   },
   {
     name: 'About',
-    route: '/cart'
+    route: 'about'
   }
 ];
 
@@ -26,7 +27,7 @@ const NavMenu = () => {
         {
           menu.map((item, index) => (
             <li key={`menu-${index}`}>
-              <a href={item.route}>{item.name}</a>
+              <Link to={item.route}>{item.name}</Link>
             </li>
           ))
         }
