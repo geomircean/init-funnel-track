@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+h2 {
+  font-family: Helvetica;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -20,6 +23,25 @@
 
 .App-link {
   color: #61dafb;
+}
+.App-menu {
+  list-style-type: none;
+  background: blanchedalmond;
+  flex: 1 auto;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.App-menu-item {
+  padding: 10px;
+  flex: 1 auto;
+}
+
+.highlight {
+  background: white;
+}
+.App-menu-item > a {
+  text-decoration: none;
 }
 
 @keyframes App-logo-spin {
