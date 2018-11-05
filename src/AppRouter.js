@@ -9,7 +9,7 @@ import {
 } from "./pages";
 
 const AppRouter = () => (
-  <Router>
+  <Router basename={process.env.PUBLIC_URL} >
     <div>
       <nav>
         <ul>
