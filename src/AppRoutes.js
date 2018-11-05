@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import NavMenu from './components/Menu';
 import { Home, About, ThankYou, Cart, Checkout } from './pages';
-
+import createHistory from 'history/createBrowserHistory';
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter history={createHistory({ basename: process.env.PUBLIC_URL })}>
 
       <div>
         <NavMenu/>
