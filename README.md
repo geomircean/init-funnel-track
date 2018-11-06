@@ -1,8 +1,8 @@
-##### This repo tests a funnel script
+### This repo tests a funnel script
 
 This project was created using react-create-app.
 
-###Available scripts
+##### Available scripts
 To start the project:
 `npm start`
 
@@ -11,4 +11,6 @@ To build the project:
 
 To add code to the github page:
 `npm run deploy`
+
+
 
