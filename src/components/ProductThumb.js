@@ -4,7 +4,7 @@ const Product = (props) => {
   const { name } = props;
   return (
     <span className='product'>
-      <div className='product-image'></div>
+      <div className='product-image'/>
       <div className='product-name'>
         {name || 'My product'}
       </div>
