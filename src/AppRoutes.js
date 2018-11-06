@@ -1,7 +1,14 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import NavMenu from './components/Menu';
-import { Home, About, ThankYou, Cart, Checkout } from './pages';
+import {
+  Home,
+  About,
+  ThankYou,
+  Cart,
+  Checkout,
+  Products
+} from './pages';
 import createHistory from 'history/createBrowserHistory';
 
 const AppRoutes = () => {
@@ -24,6 +31,11 @@ const AppRoutes = () => {
           path="/thank-you"
           exact
           component={ThankYou}
+        />
+        <Route
+          path="/products"
+          exact
+          component={Products}
         />
         <Route
           path="/checkout"

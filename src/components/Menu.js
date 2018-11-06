@@ -11,6 +11,10 @@ const menu = [
     route: '/about'
   },
   {
+    name: 'Products',
+    route: '/products'
+  },
+  {
     name: 'Cart',
     route: '/cart'
   },

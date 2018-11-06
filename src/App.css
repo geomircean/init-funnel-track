@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+
 h2 {
   font-family: Helvetica;
   color: gray;
@@ -25,6 +26,7 @@ h2 {
 .App-link {
   color: #61dafb;
 }
+
 .App-menu {
   list-style-type: none;
   background: blanchedalmond;
@@ -33,16 +35,42 @@ h2 {
   padding: 0;
   margin: 0;
 }
+
 .App-menu-item {
   padding: 10px;
   flex: 1 auto;
 }
 
-.highlight {
+.App-menu-item.highlight {
   background: white;
 }
+
 .App-menu-item > a {
   text-decoration: none;
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*align-items: center;*/
+}
+
+.product {
+  margin: 10px;
+  outline: 1px solid lightgrey;
+  align-items: center;
+}
+
+.product > .product-name {
+  font-size: 13px;
+  padding: 5px;
+  background: lightgoldenrodyellow;
+  outline: 1px solid lightgrey;
+}
+
+.product > .product-image {
+  min-height: 70px;
 }
 
 @keyframes App-logo-spin {
