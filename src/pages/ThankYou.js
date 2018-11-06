@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Container from '../components/Container';
 
 const ThankYou = (props) => {
   return (
-    <div>
+    <Container>
       <h2>Thank You!</h2>
       <Link to={'/'}>Go Back Home</Link>
-    </div>
+    </Container>
   )
 };
 

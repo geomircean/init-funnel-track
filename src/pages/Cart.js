@@ -1,5 +1,10 @@
 import React from 'react'
+import Container from '../components/Container';
 
-const Cart = (props) =>  <h2>Cart</h2>;
+const Cart = () => (
+  <Container>
+    <h2>Cart</h2>
+  </Container>
+);
 
 export default Cart;
