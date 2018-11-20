@@ -182,7 +182,7 @@ funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 16;
 funnel.funnelName = function(){
- try { return 'aboutProductsFunnel2'; } 
+ try { return 'aboutCart'; } 
  catch (e) { return ''; } 
  };
 funnel.items = function() {
@@ -199,7 +199,7 @@ return '';
 };
 funnels.push(funnel);
 } 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/cart') { 
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
