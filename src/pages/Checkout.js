@@ -16,8 +16,16 @@ class Checkout extends React.Component {
     const { value } = ev.currentTarget;
     this.setState({ rndNo: value });
   }
+
   componentDidMount() {
     loadTrackingScript();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    /** Cart has changed structure so we need the new cart in the backend */
+    if (prevState.rndNo !== this.state.rndNo) {
+      loadTrackingScript();
+    }
   }
 
   render () {

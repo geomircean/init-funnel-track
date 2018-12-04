@@ -126,31 +126,19 @@ funnel.funnelName = function(){
  catch (e) { return ''; } 
  };
 funnel.items = function() {
- try {
-   console.log(document.getElementById("items"));
-   return document.getElementById("items").innerText;
- }
+ try { return document.getElementById("items"); }
  catch (e) { return ''; } 
  };
 funnel.details = function() {
- try {
-   console.log(document.getElementById("details"));
-   return document.getElementById("details").innerText;
- }
+ try { return document.getElementById("details");}
  catch (e) { return ''; } 
  };
 funnel.htmlContent = function() {
- try {
-   console.log(document.getElementById("htmlcontent"));
-   return document.getElementById("htmlcontent").innerText;
- }
+ try { return document.getElementById("htmlcontent");}
  catch (e) { return ''; } 
  };
 funnel.abandonedURL = function() {
- try {
-   console.log(document.getElementById("abandonendUrl"));
-   return document.getElementById("abandonendUrl").innerText;
- }
+ try { return document.getElementById("abandonendUrl");}
  catch (e) { return ''; } 
  };
 funnels.push(funnel);
