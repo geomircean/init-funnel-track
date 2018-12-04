@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../components/Container';
 import Product from '../components/ProductThumb';
+import loadTrackingScript from '../tracking-script-g000';
 import { products } from '../utils/mock-data';
 
 class Checkout extends React.Component {
@@ -14,6 +15,9 @@ class Checkout extends React.Component {
   changeValue(ev) {
     const { value } = ev.currentTarget;
     this.setState({ rndNo: value });
+  }
+  componentDidMount() {
+    loadTrackingScript();
   }
 
   render () {
