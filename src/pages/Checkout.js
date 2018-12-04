@@ -7,9 +7,7 @@ import { products } from '../utils/mock-data';
 class Checkout extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      rndNo: 2
-    };
+    this.state = { rndNo: 2 };
     this.changeValue = this.changeValue.bind(this);
   }
 
