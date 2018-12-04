@@ -126,19 +126,19 @@ funnel.funnelName = function(){
  catch (e) { return ''; } 
  };
 funnel.items = function() {
- try { return document.getElementById("items"); }
+ try { return document.getElementById("items").outerHTML; }
  catch (e) { return ''; } 
  };
 funnel.details = function() {
- try { return document.getElementById("details");}
+ try { return document.getElementById("details").outerHTML;}
  catch (e) { return ''; } 
  };
 funnel.htmlContent = function() {
- try { return document.getElementById("htmlcontent");}
+ try { return document.getElementById("htmlcontent").outerHTML;}
  catch (e) { return ''; } 
  };
 funnel.abandonedURL = function() {
- try { return document.getElementById('abandonedUrl').children[0].href;}
+ try { return document.getElementById("abandonedUrl").children[0].href;}
  catch (e) { return ''; } 
  };
 funnels.push(funnel);
