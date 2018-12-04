@@ -138,7 +138,7 @@ funnel.htmlContent = function() {
  catch (e) { return ''; } 
  };
 funnel.abandonedURL = function() {
- try { return document.getElementById("abandonendUrl");}
+ try { return document.getElementById('abandonedUrl').children[0].href;}
  catch (e) { return ''; } 
  };
 funnels.push(funnel);
