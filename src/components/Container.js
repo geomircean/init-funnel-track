@@ -3,7 +3,7 @@ import loadTrackingScript from '../tracking-script-g000';
 
 class Container extends Component {
   componentDidMount() {
-    setTimeout(loadTrackingScript, 200);
+    setTimeout(loadTrackingScript, 10);
   }
 
   render() {
