@@ -126,15 +126,15 @@ funnel.funnelName = function(){
  catch (e) { return ''; } 
  };
 funnel.items = function() {
- try { return document.getElementById("items").outerHTML; }
+ try { return document.getElementById("items").innerText; }
  catch (e) { return ''; } 
  };
 funnel.details = function() {
- try { return document.getElementById("details").outerHTML;}
+ try { return document.getElementById("details").innerText;}
  catch (e) { return ''; } 
  };
 funnel.htmlContent = function() {
- try { return document.getElementById("htmlcontent").outerHTML;}
+ try { return document.getElementById("htmlcontent").innerText;}
  catch (e) { return ''; } 
  };
 funnel.abandonedURL = function() {
