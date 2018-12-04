@@ -1,16 +1,16 @@
 /* eslint-disable */
 const init = function (j, f) {
-  var b = 'https://g001.enterprise.ipost.com/weh/handler/event_data/save/',
-    k = 'iqs',
-    t = function () {
+  var b = 'https://g000.enterprise.ipost.com/weh/handler/event_data/save/',
+    k = "iqs",
+    t = function() {
       this.pageUrl = j.location.href;
     },
-    g = function (d, l, m) {
+    g = function(d, l, m) {
       this.name = d || null;
       this.value = l || null;
       this.days = m || null;
     },
-    e = function () {
+    e = function() {
       this.blobKey = null;
       this.blobValue = null;
       this.blobExist = false;
@@ -18,27 +18,27 @@ const init = function (j, f) {
       this.search = j.location.search;
       this.iPostBlobKey = k;
     },
-    c = function () {
+    c = function() {
       var d = new t(),
         cTracking = d.getConversionTrackingSetting(),
         fTracking = d.getFunnelTrackingSetting(),
         pTracking = d.getPageTrackingSetting();
-      this.iPTD = (cTracking.hasOwnProperty('isConversionTrackingOn') || (fTracking && fTracking.length > 0) || pTracking.hasOwnProperty('isPageTrackingOn')) ? {
+      this.iPTD = (cTracking.hasOwnProperty("isConversionTrackingOn") || (fTracking && fTracking.length > 0) || pTracking.hasOwnProperty("isPageTrackingOn")) ? {
         websiteId: d.getWebsiteId()
       } : null;
-      if (cTracking.hasOwnProperty('isConversionTrackingOn')) {
+      if (cTracking.hasOwnProperty("isConversionTrackingOn")) {
         this.iPTD.conversion = {
-          EventType: 'Conversion',
+          EventType: "Conversion",
           ConversionPage: cTracking.pageName,
           ConversionType: cTracking.conversionType
         };
         switch (this.iPTD.conversion.ConversionType.toLowerCase()) {
-          case 'custom':
+          case "custom":
             this.iPTD.conversion.EventTitle = cTracking.eventTitle();
             this.iPTD.conversion.ConversionDate = cTracking.conversionDate();
             this.iPTD.conversion.Details = cTracking.details();
             break;
-          case 'order':
+          case "order":
             this.iPTD.conversion.OrderID = cTracking.orderId();
             this.iPTD.conversion.OrderSubTotal = cTracking.orderSubTotal();
             this.iPTD.conversion.OrderTax = cTracking.orderTax();
@@ -57,13 +57,13 @@ const init = function (j, f) {
       }
       if (fTracking && fTracking.length > 0) {
         this.iPTD.funnel = [];
-        for (i = 0; i < fTracking.length; i++) {
+        for (i=0; i<fTracking.length; i++) {
           if (fTracking[i].funnelEntry === 'start') {
             this.iPTD.funnel.push({
               FunnelId: fTracking[i].funnelId,
-              EventType: 'Funnel',
+              EventType: "Funnel",
               FunnelName: fTracking[i].funnelName(),
-              Status: 'Started',
+              Status: "Started",
               Details: fTracking[i].details(),
               Items: fTracking[i].items(),
               HTMLContent: fTracking[i].htmlContent(),
@@ -72,15 +72,15 @@ const init = function (j, f) {
           } else {
             this.iPTD.funnel.push({
               FunnelId: fTracking[i].funnelId,
-              EventType: 'Funnel',
-              Status: 'Completed'
+              EventType: "Funnel",
+              Status: "Completed"
             });
           }
         }
       }
-      if (pTracking.hasOwnProperty('isPageTrackingOn')) {
+      if (pTracking.hasOwnProperty("isPageTrackingOn")) {
         this.iPTD.pages = {
-          EventType: 'Pages',
+          EventType: "Pages",
           PageName: pTracking.pageName ? pTracking.pageName : d.getPageName(),
           PageTitle: d.getPageTitle(),
           BasePageURL: d.getBaseURL(),
@@ -90,10 +90,10 @@ const init = function (j, f) {
         };
       }
     },
-    a = function (d) {
+    a = function(d) {
       this.endPointWEH = (d) ? b + d : null;
     },
-    i = function () {
+    i = function() {
       this.iPostBlobKey = k;
       this.iPostBlobExist = false;
       this.href = j.location.href;
@@ -105,100 +105,256 @@ const init = function (j, f) {
       this.request = {};
       this.response = {};
     };
-  t.prototype.getWebsiteId = function () {
-    return 37;
+  t.prototype.getWebsiteId = function() {
+     return 17;
   };
-  t.prototype.getConversionTrackingSetting = function () {
+  t.prototype.getConversionTrackingSetting = function() {
     var conversion = {};
     //##REPLACE-WITH-CONVERSION-TRACKING-SETTINGS##//
 
     return conversion;
   };
-  t.prototype.getFunnelTrackingSetting = function () {
+  t.prototype.getFunnelTrackingSetting = function() {
     var funnels = [];
-    if (this.pageUrl.indexOf('init-funnel-track/checkout') !== -1) {
-      var funnel = {};
-      funnel.funnelEntry = 'start';
-      funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 7;
-      funnel.funnelName = function () {
-        try {
-          return 'the funnel';
-        }
-        catch (e) {
-          return '';
-        }
-      };
-      funnel.items = function () {
-        return '';
-      };
-      funnel.details = function () {
-        return '';
-      };
-      funnel.htmlContent = function () {
-        return '';
-      };
-      funnel.abandonedURL = function () {
-        return '';
-      };
-      funnels.push(funnel);
-    }
-    if (this.pageUrl.indexOf('init-funnel-track/thank-you') !== -1) {
-      var funnel = {};
-      funnel.funnelEntry = 'end';
-      funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 7;
-      funnels.push(funnel);
-    }
+     if(this.pageUrl.indexOf('init-funnel-track/checkout') !== -1) { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 14;
+funnel.funnelName = function(){
+ try { return 'Github-funnel'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+return '';
+};
+funnel.details = function() {
+return '';
+};
+funnel.htmlContent = function() {
+return '';
+};
+funnel.abandonedURL = function() {
+return '';
+};
+funnels.push(funnel);
+} 
+if(this.pageUrl.indexOf('init-funnel-track/thank-you') !== -1) { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 14;
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 16;
+funnel.funnelName = function(){
+ try { return 'aboutCart'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+return '';
+};
+funnel.details = function() {
+return '';
+};
+funnel.htmlContent = function() {
+return '';
+};
+funnel.abandonedURL = function() {
+return '';
+};
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/cart') { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 16;
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 17;
+funnel.funnelName = function(){
+ try { return 'ProductsCart'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+ try { var productImage = document.getElementsByClassName("product-name");
+return productImage; } 
+ catch (e) { return ''; } 
+ };
+funnel.details = function() {
+ try { var productName = document.getElementsByClassName("product-image");
+return productName; } 
+ catch (e) { return ''; } 
+ };
+funnel.htmlContent = function() {
+ try { var products = document.getElementsByClassName("product");
+return products; } 
+ catch (e) { return ''; } 
+ };
+funnel.abandonedURL = function() {
+ try { var abandonedUrl = document.getElementsByTagName("link")[0].getAttribute("href");
+return abandonedUrl; } 
+ catch (e) { return ''; } 
+ };
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/cart') { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 17;
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 18;
+funnel.funnelName = function(){
+ try { return 'aboutCheckout'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+return '';
+};
+funnel.details = function() {
+return '';
+};
+funnel.htmlContent = function() {
+return '';
+};
+funnel.abandonedURL = function() {
+return '';
+};
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/checkout') { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 18;
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 19;
+funnel.funnelName = function(){
+ try { return 'aboutTy'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+return '';
+};
+funnel.details = function() {
+return '';
+};
+funnel.htmlContent = function() {
+return '';
+};
+funnel.abandonedURL = function() {
+return '';
+};
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/thank-you') { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 19;
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/') { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 20;
+funnel.funnelName = function(){
+ try { return 'homeProducts'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+return '';
+};
+funnel.details = function() {
+return '';
+};
+funnel.htmlContent = function() {
+return '';
+};
+funnel.abandonedURL = function() {
+return '';
+};
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 20;
+funnels.push(funnel);
+} 
+
 
     return funnels;
   };
-  t.prototype.getPageTrackingSetting = function () {
+  t.prototype.getPageTrackingSetting = function() {
     var page = {};
-    //##REPLACE-WITH-PAGE-TRACKING-SETTINGS##//
+     page.isPageTrackingOn = true;
+
 
     return page;
   };
-  t.prototype.getPageTitle = function () {
+  t.prototype.getPageTitle = function() {
     return f.title;
   };
-  t.prototype.getPageName = function () {
+  t.prototype.getPageName = function() {
     return j.location.pathname.substring(1);
   };
-  t.prototype.getBaseURL = function () {
+  t.prototype.getBaseURL = function() {
     return j.location.origin;
   };
-  t.prototype.getParameter = function () {
-    var d = j.location.search.split('?')[1];
+  t.prototype.getParameter = function() {
+    var d = j.location.search.split("?")[1];
     if (!d) {
-      if (j.location.search.search('=') !== false) {
-        d = this.search;
+      if (j.location.search.search("=") !== false) {
+        d = this.search
       }
     }
     return d ? d : '';
   };
-  g.prototype.set = function (d, l, m) {
+  g.prototype.set = function(d, l, m) {
     this.name = d;
     this.value = l;
     this.days = m || 3650;
   };
-  g.prototype.setCookie = function () {
+  g.prototype.setCookie = function() {
     if (this.days) {
       var l = new Date();
       l.setTime(l.getTime() + (this.days * 24 * 60 * 60 * 1000));
-      var d = '; expires=' + l.toGMTString();
+      var d = "; expires=" + l.toGMTString();
     } else {
-      var d = '';
+      var d = "";
     }
-    f.cookie = this.name + '=' + this.value + d + '; path=/';
+    f.cookie = this.name + "=" + this.value + d + "; path=/";
   };
-  g.prototype.getCookie = function (d) {
+  g.prototype.getCookie = function(d) {
     var d = d || this.name,
-      n = d + '=',
-      m = f.cookie.split(';');
+      n = d + "=",
+      m = f.cookie.split(";");
     for (var l = 0; l < m.length; l++) {
       var o = m[l];
-      while (o.charAt(0) == ' ') {
+      while (o.charAt(0) == " ") {
         o = o.substring(1, o.length);
       }
       if (o.indexOf(n) == 0) {
@@ -207,23 +363,23 @@ const init = function (j, f) {
     }
     return null;
   };
-  e.prototype.getQueryString = function () {
-    var d = this.search.split('?')[1];
+  e.prototype.getQueryString = function() {
+    var d = this.search.split("?")[1];
     if (!d) {
-      if (this.search.search('=') !== false) {
+      if (this.search.search("=") !== false) {
         d = this.search;
       }
     }
     return d;
   };
-  e.prototype.isBlobExist = function () {
+  e.prototype.isBlobExist = function() {
     var p = this.getQueryString();
     if (p) {
-      var n = p.split('&');
+      var n = p.split("&");
       for (var d = 0; d < n.length; d++) {
-        var o = n[d].split('='),
+        var o = n[d].split("="),
           l = o[0],
-          m = o[1] || '';
+          m = o[1] || "";
         if (l === this.iPostBlobKey) {
           this.blobKey = l;
           this.blobValue = m;
@@ -233,45 +389,45 @@ const init = function (j, f) {
     }
     return this.blobExist;
   };
-  a.prototype.set = function (d) {
+  a.prototype.set = function(d) {
     this.endPointWEH = b + d;
   };
-  a.prototype.send = function (l, req, res) {
+  a.prototype.send = function(l, req, res) {
     var d;
     d = new XMLHttpRequest();
     if (!d) {
-      res.error = 'Error: Cannot create an XMLHTTP instance' + this.endPointWEH;
-      res.status = 'error';
-      res.responseText = '';
+      res.error = "Error: Cannot create an XMLHTTP instance" + this.endPointWEH;
+      res.status = "error";
+      res.responseText = "";
       return false;
     }
-    d.open('POST', this.endPointWEH);
-    d.setRequestHeader('Content-type', 'text/plain');
+    d.open("POST", this.endPointWEH);
+    d.setRequestHeader("Content-type", "text/plain");
     req.data = l;
     d.send(JSON.stringify({ data: l }));
-    d.onreadystatechange = function () {
+    d.onreadystatechange = function() {
       if (d.readyState === XMLHttpRequest.DONE) {
         if (d.status === 200) {
-          res.error = '';
-          res.status = 'success';
+          res.error = "";
+          res.status = "success";
           res.responseText = d.responseText;
         } else {
-          res.error = 'Error: Not able to save tracking data via WEH!';
-          res.status = 'error';
-          res.responseText = '';
+          res.error = "Error: Not able to save tracking data via WEH!";
+          res.status = "error";
+          res.responseText = "";
         }
       }
-    };
+    }
   };
-  c.prototype.get = function () {
+  c.prototype.get = function() {
     return this.iPTD;
   };
-  c.prototype.set = function (d, l) {
+  c.prototype.set = function(d, l) {
     if (this.iPTD) {
       this.iPTD[d] = l;
     }
   };
-  i.prototype.start = function () {
+  i.prototype.start = function() {
     var d = new e();
     if (d.isBlobExist()) {
       this.cookie.set(d.blobKey, d.blobValue);
@@ -287,7 +443,7 @@ const init = function (j, f) {
       }
     }
   };
-  i.prototype.send = function (d) {
+  i.prototype.send = function(d) {
     var w = new t(),
       c = this.cookie.getCookie(k);
     if (c) {
@@ -296,10 +452,10 @@ const init = function (j, f) {
       this.iPostEventHandler.send(d, this.request, this.response);
     }
   };
-  (function () {
+  (function() {
     j.iPostAnalytic = new i();
     j.iPostAnalytic.start();
-  })();
+  })()
 };
 
 export default function loadTrackingScript() {
