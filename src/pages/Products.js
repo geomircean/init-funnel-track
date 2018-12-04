@@ -1,23 +1,9 @@
 import React from 'react'
 import Container from '../components/Container';
 import Product from '../components/ProductThumb';
-
-const availableProducts = [{
-  id: 1,
-  name: 'Dwarf Cleric',
-}, {
-  id: 2,
-  name: 'Gnome Wizard',
-}, {
-  id: 3,
-  name: 'Human Paladin',
-}, {
-  id: 4,
-  name: 'Tiefling Sorcerer',
-}];
+import { products as availableProducts } from '../utils/mock-data';
 
 const Products = (props) => {
-
   return (
     <Container>
       <h2>Products</h2>

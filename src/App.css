@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: block;
 }
 
 h2 {
@@ -53,6 +54,8 @@ h2 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 100px;
+  margin-right: 100px;
   /*align-items: center;*/
 }
 
@@ -66,11 +69,18 @@ h2 {
   font-size: 13px;
   padding: 5px;
   background: lightgoldenrodyellow;
-  outline: 1px solid lightgrey;
+}
+
+.product > .product-price {
+  font-size: 13px;
 }
 
 .product > .product-image {
   min-height: 70px;
+}
+
+.product > .product-image > img {
+  max-height: 150px;
 }
 
 @keyframes App-logo-spin {
@@ -80,4 +90,38 @@ h2 {
   to {
     transform: rotate(360deg);
   }
+}
+.container {
+  display: flex;
+  flex-flow: column;
+}
+.container > div{
+  margin: 5px;
+}
+.cart-content{
+  align-self: center;
+  width: 800px;
+  background: #f1f1f1;
+  padding: 20px;
+}
+
+#details {
+  float: right;
+  padding: 10px;
+  background: azure;
+}
+
+.order-btn {
+  align-self: center;
+  width: 100px;
+  float: right;
+  /*margin: 10px 440px;*/
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  border-radius: 5px;
+  border: darkgreen;
 }
