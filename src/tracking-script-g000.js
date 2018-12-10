@@ -330,6 +330,36 @@ funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 21;
 funnels.push(funnel);
 } 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
+var funnel = {};
+funnel.funnelEntry = 'start';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 22;
+funnel.funnelName = function(){
+ try { return 'productsAbout'; } 
+ catch (e) { return ''; } 
+ };
+funnel.items = function() {
+return '';
+};
+funnel.details = function() {
+return '';
+};
+funnel.htmlContent = function() {
+return '';
+};
+funnel.abandonedURL = function() {
+return '';
+};
+funnels.push(funnel);
+} 
+if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
+var funnel = {};
+funnel.funnelEntry = 'end';
+funnel.isFunnelTrackingOn = true;
+funnel.funnelId = 22;
+funnels.push(funnel);
+} 
 
 
     return funnels;
