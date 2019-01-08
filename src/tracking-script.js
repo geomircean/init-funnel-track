@@ -152,7 +152,7 @@ funnels.push(funnel);
 };
 t.prototype.getPageTrackingSetting = function() {
   var page = {};
-   page.isPageTrackingOn = true;
+  page.isPageTrackingOn = true;
 
 
   return page;
