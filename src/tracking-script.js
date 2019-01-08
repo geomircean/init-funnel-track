@@ -1,6 +1,6 @@
 /* eslint-disable */
 const init = function (j, f) {
-  var b = 'https://g000.enterprise.ipost.com/weh/handler/event_data/save/',
+  var b = 'https://g001.enterprise.ipost.com/weh/handler/event_data/save/',
   k = "iqs",
   t = function() {
     this.pageUrl = j.location.href;
@@ -106,7 +106,7 @@ const init = function (j, f) {
     this.response = {};
   };
 t.prototype.getWebsiteId = function() {
-   return 17;
+   return 37;
 };
 t.prototype.getConversionTrackingSetting = function() {
   var conversion = {};
@@ -116,13 +116,13 @@ t.prototype.getConversionTrackingSetting = function() {
 };
 t.prototype.getFunnelTrackingSetting = function() {
   var funnels = [];
-   if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
+   if(this.pageUrl.indexOf('init-funnel-track/checkout') !== -1) { 
 var funnel = {};
 funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 16;
+funnel.funnelId = 7;
 funnel.funnelName = function(){
-try { return 'aboutCart'; } 
+try { return 'the funnel'; } 
 catch (e) { return ''; } 
 };
 funnel.items = function() {
@@ -136,160 +136,6 @@ return '';
 };
 funnel.abandonedURL = function() {
 return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/cart') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 16;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 18;
-funnel.funnelName = function(){
-try { return 'aboutCheckout'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/checkout') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 18;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 19;
-funnel.funnelName = function(){
-try { return 'aboutTy'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/thank-you') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 19;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/cart') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 24;
-funnel.funnelName = function(){
-try { return 'cartAbout'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 24;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/checkout') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 23;
-funnel.funnelName = function(){
-try { return 'checkoutAbout'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 23;
-funnels.push(funnel);
-} 
-if(this.pageUrl.indexOf('init-funnel-track/checkout') !== -1) { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 14;
-funnel.funnelName = function(){
-try { return 'Github-funnel'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-try { return document.getElementById("items").outerHTML; } 
-catch (e) { return ''; } 
-};
-funnel.details = function() {
-try { return document.getElementById("details").outerHTML; } 
-catch (e) { return ''; } 
-};
-funnel.htmlContent = function() {
-try { return document.getElementById("htmlcontent").outerHTML; } 
-catch (e) { return ''; } 
-};
-funnel.abandonedURL = function() {
-try { return document.getElementById("abandonedUrl").children[0].href } 
-catch (e) { return ''; } 
 };
 funnels.push(funnel);
 } 
@@ -297,127 +143,7 @@ if(this.pageUrl.indexOf('init-funnel-track/thank-you') !== -1) {
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 14;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 20;
-funnel.funnelName = function(){
-try { return 'homeProducts'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 20;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 22;
-funnel.funnelName = function(){
-try { return 'productsAbout'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 22;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/products') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 17;
-funnel.funnelName = function(){
-try { return 'ProductsCart'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/cart') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 17;
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/') { 
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 21;
-funnel.funnelName = function(){
-try { return 'stef'; } 
-catch (e) { return ''; } 
-};
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-} 
-if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/checkout') { 
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 21;
+funnel.funnelId = 7;
 funnels.push(funnel);
 } 
 
