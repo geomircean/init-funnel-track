@@ -323,7 +323,7 @@ return '';
 };
 funnels.push(funnel);
 } 
-if(this.pageUrl == 'init-funnel-track/about') { 
+if(this.pageUrl.indexOf('init-funnel-track/about') !== -1) { 
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
