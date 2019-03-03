@@ -1,4 +1,4 @@
-### This repo tests a funnel script
+##### This repo tests a funnel script integration into a site
 
 This project was created using react-create-app.
 
