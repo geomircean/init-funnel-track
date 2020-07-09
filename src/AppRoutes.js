@@ -18,17 +18,17 @@ const AppRoutes = () => {
       <div>
         <NavMenu />
         <Route
-          path="/"
+          path="/init-funnel-track/"
           exact
           component={Home}
         />
         <Route
-          path="/about"
+          path="about/"
           exact
           component={About}
         />
         <Route
-          path="/thank-you"
+          path="thank-you/"
           exact
           component={ThankYou}
         />
