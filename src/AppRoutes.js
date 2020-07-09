@@ -9,11 +9,11 @@ import {
   Checkout,
   Products
 } from './pages';
-import createHistory from 'history/createBrowserHistory';
+import {createBrowserHistory } from 'history';
 
 const AppRoutes = () => {
   return (
-    <Router history={createHistory({ basename: process.env.PUBLIC_URL })}>
+    <Router history={createBrowserHistory({ basename: process.env.PUBLIC_URL })}>
 
       <div>
         <NavMenu />
