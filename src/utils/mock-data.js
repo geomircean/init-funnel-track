@@ -2,7 +2,7 @@ export const products = [{
   id: 1,
   name: 'Dwarf Cleric',
   price: 1.59,
-  image: '//cdn.shopify.com/s/files/1/1891/1579/products/dwarf_cleric_f_9c0f1ace-1635-471a-94fa-f96cf115003d_1024x1024.jpg?v=1490970853'
+  image: 'https://i.pinimg.com/originals/c5/c7/aa/c5c7aac7fb4ff96bd2053a554a8279c3.png'
 }, {
   id: 2,
   name: 'Gnome Wizard',
@@ -17,7 +17,7 @@ export const products = [{
   id: 4,
   name: 'Tiefling Sorcerer',
   price: 2.89,
-  image: 'https://i.ebayimg.com/images/g/z4sAAOSwY0RZ5HMQ/s-l300.jpg'
+  image: 'https://i.pinimg.com/originals/72/99/60/729960dc128e541aede6ac1c65a5941a.png'
 }, {
   id: 5,
   name: 'Simic Hybrid Wizard',
@@ -27,7 +27,7 @@ export const products = [{
   id: 6,
   name: 'Loxodon Fighter',
   price: 2.79,
-  image: 'https://scontent-frt3-2.cdninstagram.com/vp/b2a072cf1782da66b8272112cf35631b/5C1E31DE/t51.2885-15/e35/37528919_327983544438745_6160316200183136256_n.jpg?se=7&ig_cache_key=MTg1OTc2OTIyMTYwNjk5NTI3NQ%3D%3D.2'
+  image: 'https://sites.google.com/site/redcapland/_/rsrc/1534711050772/races/loxodon/Loxodon%20Bounce%20Light.jpg?height=293&width=400'
 }, {
   id: 7,
   name: 'Goblin Rogue',
