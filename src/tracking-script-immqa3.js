@@ -17,6 +17,7 @@ const init = function(j, f) {
       this.href = j.location.href;
       this.search = j.location.search;
       this.iPostBlobKey = k;
+      this.isLoadedFromIframe = false;
     },
     c = function() {
       var d = new t(),
@@ -57,7 +58,7 @@ const init = function(j, f) {
       }
       if (fTracking && fTracking.length > 0) {
         this.iPTD.funnel = [];
-        for (i=0; i<fTracking.length; i++) {
+        for (i = 0; i < fTracking.length; i++) {
           if (fTracking[i].funnelEntry === 'start') {
             this.iPTD.funnel.push({
               FunnelId: fTracking[i].funnelId,
@@ -106,7 +107,7 @@ const init = function(j, f) {
       this.response = {};
     };
   t.prototype.getWebsiteId = function() {
-     return 1;
+    return 1;
   };
   t.prototype.getConversionTrackingSetting = function() {
     var conversion = {};
@@ -116,156 +117,306 @@ const init = function(j, f) {
   };
   t.prototype.getFunnelTrackingSetting = function() {
     var funnels = [];
-     if(this.pageUrl == '/') {
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 1;
-funnel.funnelName = function(){
- try { return 'Abbandoned Git'; }
- catch (e) { return ''; }
- };
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-}
-if(this.pageUrl == '/checkout') {
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 1;
-funnels.push(funnel);
-}
-if(this.pageUrl == '/a') {
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 2;
-funnel.funnelName = function(){
- try { return 'Abbandoned Git2'; }
- catch (e) { return ''; }
- };
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-}
-if(this.pageUrl == '/checkout') {
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 2;
-funnels.push(funnel);
-}
-if(this.pageUrl == '/a') {
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 3;
-funnel.funnelName = function(){
- try { return 'Abbandoned Git3'; }
- catch (e) { return ''; }
- };
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-}
-if(this.pageUrl == '/about') {
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 3;
-funnels.push(funnel);
-}
-if(this.pageUrl == '/b') {
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 4;
-funnel.funnelName = function(){
- try { return 'Abbandoned Git4'; }
- catch (e) { return ''; }
- };
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-}
-if(this.pageUrl == '/about') {
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 4;
-funnels.push(funnel);
-}
-if(this.pageUrl.indexOf('git') !== -1) {
-var funnel = {};
-funnel.funnelEntry = 'start';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 5;
-funnel.funnelName = function(){
- try { return 'RaulG'; }
- catch (e) { return ''; }
- };
-funnel.items = function() {
-return '';
-};
-funnel.details = function() {
-return '';
-};
-funnel.htmlContent = function() {
-return '';
-};
-funnel.abandonedURL = function() {
-return '';
-};
-funnels.push(funnel);
-}
-if(this.pageUrl == 'git') {
-var funnel = {};
-funnel.funnelEntry = 'end';
-funnel.isFunnelTrackingOn = true;
-funnel.funnelId = 5;
-funnels.push(funnel);
-}
+    if(this.pageUrl.indexOf('/about') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 18;
+      funnel.funnelName = function(){
+        try { return 'AboutToCart'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/cart') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 18;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/checkout') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 19;
+      funnel.funnelName = function(){
+        try { return 'CheckoutToThankYou'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/thank-you') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 19;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/init-funnel-track') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 20;
+      funnel.funnelName = function(){
+        try { return 'HomeToCheckout'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/checkout') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 20;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/products') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 17;
+      funnel.funnelName = function(){
+        try { return 'ProductToAbout'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/about') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 17;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/prodasda') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 16;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abandoned Git6'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/adas') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 16;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dadsada') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 1;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dasdas') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 1;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/a') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 2;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git2'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dsadsat') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 2;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dasdsa') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 3;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git3'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/adasdas') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 3;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/b') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 4;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git4'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/about') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 4;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/c') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 14;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git5'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/about') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 14;
+      funnels.push(funnel);
+    }
 
 
     return funnels;
@@ -299,15 +450,20 @@ funnels.push(funnel);
     this.value = l;
     this.days = m || 3650;
   };
-  g.prototype.setCookie = function() {
+  g.prototype.setCookie = function(iframe) {
     if (this.days) {
       var l = new Date();
       l.setTime(l.getTime() + (this.days * 24 * 60 * 60 * 1000));
-      var d = "; expires=" + l.toGMTString();
+      var d = "; expires=" + l.toGMTString() + ";";
     } else {
-      var d = "";
+      var d = ";";
     }
-    f.cookie = this.name + "=" + this.value + d + "; path=/";
+    if (iframe) {
+      var i = "SameSite=None; Secure ;";
+    } else {
+      var i = "";
+    }
+    f.cookie = this.name + "=" + this.value + d + " " + i + " path=/";
   };
   g.prototype.getCookie = function(d) {
     var d = d || this.name,
@@ -346,9 +502,23 @@ funnels.push(funnel);
           this.blobValue = m;
           this.blobExist = true;
         }
+
+        if (l === 'iframe' && m === 'true') {
+          this.isLoadedFromIframe = true;
+        }
       }
     }
     return this.blobExist;
+  };
+  e.prototype.isCrossDomainTrackingEnabled = function() {
+    return false;
+  };
+  e.prototype.getWebsiteURL = function() {
+    return 'http://www.github.io';
+  };
+  e.prototype.getCrossDomainURL = function(baseURL, key, value) {
+    var separator = baseURL.indexOf('?') !== -1 ? "&" : "?";
+    return baseURL + separator + key + "=" + value + "&iframe=true";
   };
   a.prototype.set = function(d) {
     this.endPointWEH = d ? b + d : b;
@@ -365,7 +535,9 @@ funnels.push(funnel);
     d.open("POST", this.endPointWEH);
     d.setRequestHeader("Content-type", "text/plain");
     req.data = l;
-    d.send(JSON.stringify({ data: l }));
+    d.send(JSON.stringify({
+      data: l
+    }));
     d.onreadystatechange = function() {
       if (d.readyState === XMLHttpRequest.DONE) {
         if (d.status === 200) {
@@ -392,9 +564,28 @@ funnels.push(funnel);
     var d = new e();
     if (d.isBlobExist()) {
       this.cookie.set(d.blobKey, d.blobValue);
-      this.cookie.setCookie();
+      this.cookie.setCookie(d.isLoadedFromIframe);
     }
     var l = this.cookie.getCookie(k);
+
+    // set the iframe if cross-domain is enabled for the website
+    if (d.isCrossDomainTrackingEnabled() && l !== null) {
+      var urlFromConfig = d.getWebsiteURL();
+      var urlFromAddress = j.location.href;
+      var domainFromConfig = urlFromConfig.replace('http://', '').replace('https://', '').split(/[/?#]/)[0];
+      var domainFromAddress = urlFromAddress.replace('http://', '').replace('https://', '').split(/[/?#]/)[0];
+      var isSameWebsite = domainFromConfig === domainFromAddress;
+
+      if (!isSameWebsite) {
+        var iframe = f.createElement('iframe');
+        iframe.setAttribute("src", d.getCrossDomainURL(urlFromConfig, k, l));
+        iframe.style.width = "0px";
+        iframe.style.height = "0px";
+        iframe.style.display = "none";
+        f.body.appendChild(iframe);
+      }
+    }
+
     var m = new c();
     m.set(k, l);
     this.iPostEventHandler.set(l);
