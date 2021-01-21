@@ -5,7 +5,7 @@ import { products as availableProducts } from '../utils/mock-data';
 
 const Products = (props) => {
   return (
-    <Container>
+    <Container key='products'>
       <h2>Products</h2>
       <div className='products'>
         {availableProducts.map(item => <Product key={`product-${item.id}`} {...item}/>)}

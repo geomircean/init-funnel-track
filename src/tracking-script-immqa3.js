@@ -1,5 +1,6 @@
-(function(j, f) {
-  var b = 'http://immqa3.devnest.ro/weh/handler/event_data/save/',
+/* eslint-disable */
+const init = function(j, f) {
+  var b = 'https://immqa3.devnest.ro/weh/handler/event_data/save/',
     k = "iqs",
     t = function() {
       this.pageUrl = j.location.href;
@@ -115,14 +116,14 @@
   };
   t.prototype.getFunnelTrackingSetting = function() {
     var funnels = [];
-     if(this.pageUrl == '/') { 
+     if(this.pageUrl == '/') {
 var funnel = {};
 funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 1;
 funnel.funnelName = function(){
- try { return 'Abbandoned Git'; } 
- catch (e) { return ''; } 
+ try { return 'Abbandoned Git'; }
+ catch (e) { return ''; }
  };
 funnel.items = function() {
 return '';
@@ -137,22 +138,22 @@ funnel.abandonedURL = function() {
 return '';
 };
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/checkout') { 
+}
+if(this.pageUrl == '/checkout') {
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 1;
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/a') { 
+}
+if(this.pageUrl == '/a') {
 var funnel = {};
 funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 2;
 funnel.funnelName = function(){
- try { return 'Abbandoned Git2'; } 
- catch (e) { return ''; } 
+ try { return 'Abbandoned Git2'; }
+ catch (e) { return ''; }
  };
 funnel.items = function() {
 return '';
@@ -167,22 +168,22 @@ funnel.abandonedURL = function() {
 return '';
 };
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/checkout') { 
+}
+if(this.pageUrl == '/checkout') {
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 2;
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/a') { 
+}
+if(this.pageUrl == '/a') {
 var funnel = {};
 funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 3;
 funnel.funnelName = function(){
- try { return 'Abbandoned Git3'; } 
- catch (e) { return ''; } 
+ try { return 'Abbandoned Git3'; }
+ catch (e) { return ''; }
  };
 funnel.items = function() {
 return '';
@@ -197,22 +198,22 @@ funnel.abandonedURL = function() {
 return '';
 };
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/about') { 
+}
+if(this.pageUrl == '/about') {
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 3;
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/b') { 
+}
+if(this.pageUrl == '/b') {
 var funnel = {};
 funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 4;
 funnel.funnelName = function(){
- try { return 'Abbandoned Git4'; } 
- catch (e) { return ''; } 
+ try { return 'Abbandoned Git4'; }
+ catch (e) { return ''; }
  };
 funnel.items = function() {
 return '';
@@ -227,22 +228,22 @@ funnel.abandonedURL = function() {
 return '';
 };
 funnels.push(funnel);
-} 
-if(this.pageUrl == '/about') { 
+}
+if(this.pageUrl == '/about') {
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 4;
 funnels.push(funnel);
-} 
-if(this.pageUrl.indexOf('git') !== -1) { 
+}
+if(this.pageUrl.indexOf('git') !== -1) {
 var funnel = {};
 funnel.funnelEntry = 'start';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 5;
 funnel.funnelName = function(){
- try { return 'RaulG'; } 
- catch (e) { return ''; } 
+ try { return 'RaulG'; }
+ catch (e) { return ''; }
  };
 funnel.items = function() {
 return '';
@@ -257,14 +258,14 @@ funnel.abandonedURL = function() {
 return '';
 };
 funnels.push(funnel);
-} 
-if(this.pageUrl == 'git') { 
+}
+if(this.pageUrl == 'git') {
 var funnel = {};
 funnel.funnelEntry = 'end';
 funnel.isFunnelTrackingOn = true;
 funnel.funnelId = 5;
 funnels.push(funnel);
-} 
+}
 
 
     return funnels;
@@ -414,4 +415,8 @@ funnels.push(funnel);
     j.iPostAnalytic = new i();
     j.iPostAnalytic.start();
   })()
-}(window, document));
+};
+
+export default function loadTrackingScript() {
+  init(window, document);
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavMenu from './components/Menu';
 import {
   Home,
@@ -9,41 +9,42 @@ import {
   Checkout,
   Products
 } from './pages';
-import {createBrowserHistory } from 'history';
+
+// import { createBrowserHistory } from 'history';
+//    <Router history={createBrowserHistory({ basename: process.env.PUBLIC_URL })}>
 
 const AppRoutes = () => {
   return (
-    <Router history={createBrowserHistory({ basename: process.env.PUBLIC_URL })}>
-
+    <Router basename={process.env.PUBLIC_URL}>
       <div>
         <NavMenu />
         <Route
-          path="/init-funnel-track/"
+          path="/"
           exact
           component={Home}
         />
         <Route
-          path="about/"
+          path="/about/"
           exact
           component={About}
         />
         <Route
-          path="thank-you/"
+          path="/thank-you/"
           exact
           component={ThankYou}
         />
         <Route
-          path="/products"
+          path="/products/"
           exact
           component={Products}
         />
         <Route
-          path="/checkout"
+          path="/checkout/"
           exact
           component={Checkout}
         />
         <Route
-          path="/cart"
+          path="/cart/"
           exact
           component={Cart}
         />

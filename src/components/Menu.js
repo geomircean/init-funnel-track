@@ -4,23 +4,23 @@ import { Link } from 'react-router-dom';
 const menu = [
   {
     name: 'Home',
-    route: '/init-funnel-track/'
+    route: '/'
   },
   {
     name: 'About',
-    route: 'about'
+    route: '/about'
   },
   {
     name: 'Products',
-    route: 'products'
+    route: '/products'
   },
   {
     name: 'Cart',
-    route: 'cart'
+    route: '/cart'
   },
   {
     name: 'Checkout',
-    route: 'checkout'
+    route: '/checkout'
   },
 ];
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loadTrackingScript from '../tracking-script-g000';
+import loadTrackingScript from '../tracking-script-immqa3';
 
 class Container extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Container extends Component {
         {children}
       </div>
     );
-  }
+  }s
 }
 
 export default Container;
