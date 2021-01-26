@@ -27,7 +27,8 @@ const menu = [
 class NavMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = { selected: '/' };
+    const initialRoute = window.location.pathname.replace(`/init-funnel-track`, '');
+    this.state = { selected: initialRoute };
   }
 
   onClick = (route) => this.setState({ selected: route });

@@ -1,6 +1,6 @@
 /* eslint-disable */
 const init = function(j, f) {
-  var b = 'https://immqa3.devnest.ro/weh/handler/event_data/save/',
+  var b = 'http://immqa3.devnest.ro/weh/handler/event_data/save/',
     k = "iqs",
     t = function() {
       this.pageUrl = j.location.href;
@@ -111,7 +111,65 @@ const init = function(j, f) {
   };
   t.prototype.getConversionTrackingSetting = function() {
     var conversion = {};
-    //##REPLACE-WITH-CONVERSION-TRACKING-SETTINGS##//
+    if(this.pageUrl.indexOf('/thank-you') !== -1) {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/thank-you';
+      conversion.conversionType = 'order';
+      conversion.orderId = function() {
+        try { return document.getElementById('OrderId').innerText }
+        catch (e) { return ''; }
+      };
+      conversion.orderSubTotal = function() {
+        return '0.00';
+      };
+      conversion.orderTax = function() {
+        return '0.00';
+      };
+      conversion.orderShipping = function() {
+        return '0.00';
+      };
+      conversion.orderGrandTotal = function() {
+        try { return document.getElementById('OrderTotal').innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.couponUsed = function() {
+        return '';
+      };
+      conversion.onSale = function() {
+        return '';
+      };
+      conversion.orderDomain = function() {
+        return '';
+      };
+      conversion.orderSource = function() {
+        return '';
+      };
+      conversion.orderStoreId = function() {
+        return '';
+      };
+      conversion.orderDate = function() {
+        try { return document.getElementById('OrderDate').innerText }
+        catch (e) { return ''; }
+      };
+      conversion.items = function() {
+        try { let items = [];
+          const itemList  = document.getElementById('items').childNodes;
+
+          itemList.forEach((item, index) => {
+            const [img, name, price] = item.childNodes;
+            const itemObject = {};
+            itemObject.Title = name.innerText;
+            itemObject.Price = price.innerText;
+            itemObject.Quantity = 1;
+            itemObject.Sku = name.innerText + 1;
+            items.push(itemObject);
+          });
+
+          return items; }
+        catch (e) { return ''; }
+      };
+    }
+
 
     return conversion;
   };

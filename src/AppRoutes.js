@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavMenu from './components/Menu';
+import { products } from './utils/mock-data';
 import {
   Home,
   About,
@@ -10,10 +11,8 @@ import {
   Products
 } from './pages';
 
-// import { createBrowserHistory } from 'history';
-//    <Router history={createBrowserHistory({ basename: process.env.PUBLIC_URL })}>
-
 const AppRoutes = () => {
+  const [rndNo, changeCartContent] = useState(2);
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div>
@@ -29,11 +28,6 @@ const AppRoutes = () => {
           component={About}
         />
         <Route
-          path="/thank-you/"
-          exact
-          component={ThankYou}
-        />
-        <Route
           path="/products/"
           exact
           component={Products}
@@ -41,7 +35,12 @@ const AppRoutes = () => {
         <Route
           path="/checkout/"
           exact
-          component={Checkout}
+          render={props => <Checkout {...props} rndNo={rndNo} products={products} updateNo={changeCartContent}/>}
+        />
+        <Route
+          path="/thank-you/"
+          exact
+          render={props => <ThankYou {...props} rndNo={rndNo} products={products} updateNo={changeCartContent}/>}
         />
         <Route
           path="/cart/"
