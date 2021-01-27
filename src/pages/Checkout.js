@@ -31,7 +31,7 @@ class Checkout extends React.Component {
             min={1}
             max={7}
             value={rndNo}
-            onChange={ev => updateNo({ rndNo: ev.currentTarget.value })}
+            onChange={ev => updateNo(ev.currentTarget.value)}
           />
           <div id='htmlcontent'>
             <div id='items' className='products'>
