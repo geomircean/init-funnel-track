@@ -111,7 +111,7 @@ const init = function(j, f) {
   };
   t.prototype.getConversionTrackingSetting = function() {
     var conversion = {};
-    if(this.pageUrl == '/thank-you') {
+    if(this.pageUrl.indexOf('/thank-you') !== -1) {
       conversion.isConversionTrackingOn = true;
       conversion.pageName = '/thank-you';
       conversion.conversionType = 'order';
