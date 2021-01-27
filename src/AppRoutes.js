@@ -13,6 +13,7 @@ import {
 
 const AppRoutes = () => {
   const [rndNo, changeCartContent] = useState(2);
+  // const [trackingScript, changeTrackingScript] = useState(0);
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loadTrackingScript from '../tracking-script-immqa3';
+import loadTrackingScript from '../tracking-script-g000';
 
 class Container extends Component {
   componentDidMount() {
