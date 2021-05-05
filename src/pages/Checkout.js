@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../components/Container';
 import Product from '../components/ProductThumb';
-import loadTrackingScript from '../tracking-script-immqa3';
+import loadTrackingScript from '../tracking-script-g000';
 
 class Checkout extends React.Component {
   // componentDidMount() {
