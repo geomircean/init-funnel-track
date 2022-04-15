@@ -2,15 +2,15 @@
 const init = function(j, f) {
   var b = 'https://g000.enterprise.ipost.com/weh/handler/event_data/save/',
     k = "iqs",
-    t = function() {
+    t = function () {
       this.pageUrl = j.location.href;
     },
-    g = function(d, l, m) {
+    g = function (d, l, m) {
       this.name = d || null;
       this.value = l || null;
       this.days = m || null;
     },
-    e = function() {
+    e = function () {
       this.blobKey = null;
       this.blobValue = null;
       this.blobExist = false;
@@ -19,15 +19,21 @@ const init = function(j, f) {
       this.iPostBlobKey = k;
       this.isLoadedFromIframe = false;
     },
-    c = function() {
+    c = function () {
       var d = new t(),
         cTracking = d.getConversionTrackingSetting(),
         fTracking = d.getFunnelTrackingSetting(),
-        pTracking = d.getPageTrackingSetting();
-      this.iPTD = (cTracking.hasOwnProperty("isConversionTrackingOn") || (fTracking && fTracking.length > 0) || pTracking.hasOwnProperty("isPageTrackingOn")) ? {
-        websiteId: d.getWebsiteId()
-      } : null;
+        pTracking = d.getPageTrackingSetting(),
+        lTracking = d.getLinkClickSetting();
+      this.iPTD = (
+        cTracking.hasOwnProperty("isConversionTrackingOn") ||
+        (fTracking && fTracking.length > 0) ||
+        pTracking.hasOwnProperty("isPageTrackingOn")
+      ) ? { websiteId: d.getWebsiteId() } : null;
+      this.trackingStatus = {};
+
       if (cTracking.hasOwnProperty("isConversionTrackingOn")) {
+        this.trackingStatus.isConversionTrackingOn = true;
         this.iPTD.conversion = {
           EventType: "Conversion",
           ConversionPage: cTracking.pageName,
@@ -57,6 +63,7 @@ const init = function(j, f) {
         }
       }
       if (fTracking && fTracking.length > 0) {
+        this.trackingStatus.isFunnelTrackingOn = true;
         this.iPTD.funnel = [];
         for (i = 0; i < fTracking.length; i++) {
           if (fTracking[i].funnelEntry === 'start') {
@@ -80,7 +87,9 @@ const init = function(j, f) {
         }
       }
       if (pTracking.hasOwnProperty("isPageTrackingOn")) {
+        this.trackingStatus.isPageTrackingOn = true;
         this.iPTD.pages = {
+          PageTrackingType: "Page Visit",
           EventType: "Pages",
           PageName: pTracking.pageName ? pTracking.pageName : d.getPageName(),
           PageTitle: d.getPageTitle(),
@@ -89,12 +98,32 @@ const init = function(j, f) {
           PageCategory: pTracking.pageCategory ? pTracking.pageCategory() : '',
           PageType: pTracking.pageType ? pTracking.pageType() : ''
         };
+        this.linkClickTrackingData = function (type) {
+          var data = {
+            EventType: "Pages",
+            PageName: pTracking.pageName ? pTracking.pageName : d.getPageName(),
+            PageTitle: d.getPageTitle(),
+            BasePageURL: d.getBaseURL(),
+            Parameter: d.getParameter()
+          };
+
+          if (type === 'linkclick') {
+            data.PageTrackingType = "Link Click";
+            data.Links = lTracking.links ? lTracking.links() : '';
+          }
+
+          if (type === 'customevent') {
+            data.PageTrackingType = "Custom Event";
+          }
+
+          return data;
+        };
       }
     },
-    a = function(d) {
+    a = function (d) {
       this.endPointWEH = (d) ? b + d : null;
     },
-    i = function() {
+    i = function () {
       this.iPostBlobKey = k;
       this.iPostBlobExist = false;
       this.href = j.location.href;
@@ -106,17 +135,19 @@ const init = function(j, f) {
       this.request = {};
       this.response = {};
     };
-  t.prototype.getWebsiteId = function() {
+  t.prototype.getWebsiteId = function () {
     return 17;
   };
-  t.prototype.getConversionTrackingSetting = function() {
+  t.prototype.getConversionTrackingSetting = function () {
     var conversion = {};
+    conversion.isConversionTrackingOn = true;
+    conversion.conversionType = '';
     if(this.pageUrl.indexOf('/thank-you') !== -1) {
       conversion.isConversionTrackingOn = true;
       conversion.pageName = '/thank-you';
       conversion.conversionType = 'order';
       conversion.orderId = function() {
-        try { return document.getElementById('OrderId').innerText; }
+        try { return document.getElementById('orderId').innerText; }
         catch (e) { return ''; }
       };
       conversion.orderSubTotal = function() {
@@ -129,7 +160,7 @@ const init = function(j, f) {
         return '0.00';
       };
       conversion.orderGrandTotal = function() {
-        try { return document.getElementById('OrderTotal').innerText; }
+        try { return document.getElementById('orderGrandTotal').innerText; }
         catch (e) { return ''; }
       };
       conversion.couponUsed = function() {
@@ -148,24 +179,65 @@ const init = function(j, f) {
         return '';
       };
       conversion.orderDate = function() {
-        try { return document.getElementById('OrderDate').innerText; }
+        try { return document.getElementById('orderDate').innerText; }
         catch (e) { return ''; }
       };
       conversion.items = function() {
-        try { let items = [];
-          const itemList  = document.getElementById('items').childNodes;
-
-          itemList.forEach((item, index) => {
-            const [img, name, price] = item.childNodes;
-            const itemObject = {};
-            itemObject.Title = name.innerText;
-            itemObject.Price = price.innerText;
-            itemObject.Quantity = 1;
-            itemObject.Sku = name.innerText + 1;
-            items.push(itemObject);
-          });
-
-          return items; }
+        try { const itemObject = {};
+          itemObject.Title = 'SomeTitle';
+          itemObject.Sku = 'someSKU';
+          itemObject.Price =  '123';
+          itemObject.Quantity = 1;
+          return []; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl.indexOf('/orderConfirmation') !== -1) {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/orderConfirmation';
+      conversion.conversionType = 'order';
+      conversion.orderId = function() {
+        try { return document.getElementById('orderId').innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.orderSubTotal = function() {
+        return '0.00';
+      };
+      conversion.orderTax = function() {
+        return '0.00';
+      };
+      conversion.orderShipping = function() {
+        return '0.00';
+      };
+      conversion.orderGrandTotal = function() {
+        try { return document.getElementById('orderTotal').innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.couponUsed = function() {
+        return '';
+      };
+      conversion.onSale = function() {
+        return '';
+      };
+      conversion.orderDomain = function() {
+        return '';
+      };
+      conversion.orderSource = function() {
+        return '';
+      };
+      conversion.orderStoreId = function() {
+        return '';
+      };
+      conversion.orderDate = function() {
+        try { return document.getElementById('orderDate').innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.items = function() {
+        try { const itemObject = {};
+          itemObject.Title = '';
+          itemObject.Sku = '';
+          itemObject.Price = 1213;
+          itemObject.Quantity = 1; }
         catch (e) { return ''; }
       };
     }
@@ -173,7 +245,7 @@ const init = function(j, f) {
 
     return conversion;
   };
-  t.prototype.getFunnelTrackingSetting = function() {
+  t.prototype.getFunnelTrackingSetting = function () {
     var funnels = [];
     if(this.pageUrl == 'https://geomircean.github.io/init-funnel-track/about') {
       var funnel = {};
@@ -483,23 +555,30 @@ const init = function(j, f) {
 
     return funnels;
   };
-  t.prototype.getPageTrackingSetting = function() {
+  t.prototype.getPageTrackingSetting = function () {
     var page = {};
     page.isPageTrackingOn = true;
 
 
     return page;
   };
-  t.prototype.getPageTitle = function() {
+  t.prototype.getLinkClickSetting = function () {
+    var page = {};
+    page.isPageTrackingOn = true;
+
+
+    return page;
+  };
+  t.prototype.getPageTitle = function () {
     return f.title;
   };
-  t.prototype.getPageName = function() {
+  t.prototype.getPageName = function () {
     return j.location.pathname.substring(1);
   };
-  t.prototype.getBaseURL = function() {
+  t.prototype.getBaseURL = function () {
     return j.location.origin;
   };
-  t.prototype.getParameter = function() {
+  t.prototype.getParameter = function () {
     var d = j.location.search.split("?")[1];
     if (!d) {
       if (j.location.search.search("=") !== false) {
@@ -508,12 +587,12 @@ const init = function(j, f) {
     }
     return d ? d : '';
   };
-  g.prototype.set = function(d, l, m) {
+  g.prototype.set = function (d, l, m) {
     this.name = d;
     this.value = l;
     this.days = m || 3650;
   };
-  g.prototype.setCookie = function(iframe) {
+  g.prototype.setCookie = function (iframe) {
     if (this.days) {
       var l = new Date();
       l.setTime(l.getTime() + (this.days * 24 * 60 * 60 * 1000));
@@ -528,7 +607,7 @@ const init = function(j, f) {
     }
     f.cookie = this.name + "=" + this.value + d + " " + i + " path=/";
   };
-  g.prototype.getCookie = function(d) {
+  g.prototype.getCookie = function (d) {
     var d = d || this.name,
       n = d + "=",
       m = f.cookie.split(";");
@@ -543,7 +622,7 @@ const init = function(j, f) {
     }
     return null;
   };
-  e.prototype.getQueryString = function() {
+  e.prototype.getQueryString = function () {
     var d = this.search.split("?")[1];
     if (!d) {
       if (this.search.search("=") !== false) {
@@ -552,7 +631,7 @@ const init = function(j, f) {
     }
     return d;
   };
-  e.prototype.isBlobExist = function() {
+  e.prototype.isBlobExist = function () {
     var p = this.getQueryString();
     if (p) {
       var n = p.split("&");
@@ -573,20 +652,20 @@ const init = function(j, f) {
     }
     return this.blobExist;
   };
-  e.prototype.isCrossDomainTrackingEnabled = function() {
+  e.prototype.isCrossDomainTrackingEnabled = function () {
     return false;
   };
-  e.prototype.getWebsiteURL = function() {
+  e.prototype.getWebsiteURL = function () {
     return 'https://geomircean.github.io';
   };
-  e.prototype.getCrossDomainURL = function(baseURL, key, value) {
+  e.prototype.getCrossDomainURL = function (baseURL, key, value) {
     var separator = baseURL.indexOf('?') !== -1 ? "&" : "?";
     return baseURL + separator + key + "=" + value + "&iframe=true";
   };
-  a.prototype.set = function(d) {
+  a.prototype.set = function (d) {
     this.endPointWEH = d ? b + d : b;
   };
-  a.prototype.send = function(l, req, res) {
+  a.prototype.send = function (l, req, res) {
     var d;
     d = new XMLHttpRequest();
     if (!d) {
@@ -601,7 +680,7 @@ const init = function(j, f) {
     d.send(JSON.stringify({
       data: l
     }));
-    d.onreadystatechange = function() {
+    d.onreadystatechange = function () {
       if (d.readyState === XMLHttpRequest.DONE) {
         if (d.status === 200) {
           res.error = "";
@@ -615,15 +694,22 @@ const init = function(j, f) {
       }
     }
   };
-  c.prototype.get = function() {
+  c.prototype.get = function () {
     return this.iPTD;
   };
-  c.prototype.set = function(d, l) {
+  c.prototype.getPageCustomEventData = function () {
+    return this.linkClickTrackingData ? this.linkClickTrackingData('customevent') : null;
+  };
+  c.prototype.checkTrackingStatus = function () {
+    return this.trackingStatus;
+  };
+  c.prototype.set = function (d, l) {
     if (this.iPTD) {
       this.iPTD[d] = l;
     }
   };
-  i.prototype.start = function() {
+  i.prototype.start = function () {
+    this.bindClickEvents();
     var d = new e();
     if (d.isBlobExist()) {
       this.cookie.set(d.blobKey, d.blobValue);
@@ -656,16 +742,122 @@ const init = function(j, f) {
       this.iPostEventHandler.send(m.get(), this.request, this.response);
     }
   };
-  i.prototype.send = function(d) {
+  i.prototype.send = function (d) {
+    if (!(d.hasOwnProperty('conversion')) && !(d.hasOwnProperty('pages'))) {
+      console.error('Please pass the data obj in { conversion: dataObj } or { pages: dataObj } format');
+      return false;
+    }
+
+    var tObj = new c();
+    var trackingStatus = tObj.checkTrackingStatus();
+
+    if (d.hasOwnProperty('conversion') && !(trackingStatus.hasOwnProperty('isConversionTrackingOn'))) {
+      return false;
+    }
+
+    if (d.hasOwnProperty('pages') && !(trackingStatus.hasOwnProperty('isPageTrackingOn'))) {
+      return false;
+    }
+
+    if (d.hasOwnProperty('conversion') && !(d.conversion.ConversionType || d.conversion.ConversionType === 'order' || d.conversion.ConversionType === 'custom')) {
+      console.error('Please pass a ConversionType parameter in { conversion: dataObj }');
+      return false;
+    }
+
+    if (d.hasOwnProperty('pages')) {
+      var pageTrackingData = tObj.getPageCustomEventData();
+      var response = { pages: { CustomPageData: d.pages } };
+      if (pageTrackingData === null) {
+        return false;
+      }
+
+      for (var key in pageTrackingData) {
+        response.pages[key] = pageTrackingData[key];
+      }
+
+      d = response;
+    }
+
     var w = new t(),
-      c = this.cookie.getCookie(k);
-    if (c) {
+      cookie = this.cookie.getCookie(k);
+    if (cookie) {
       d.websiteId = w.getWebsiteId();
-      d[k] = c;
+      d[k] = cookie;
       this.iPostEventHandler.send(d, this.request, this.response);
     }
   };
-  (function() {
+  i.prototype.bindClickEvents = function () {
+    var instance = this;
+    var m = new c();
+
+    if (m.linkClickTrackingData) {
+      var linkClickConfig = m.linkClickTrackingData('linkclick');
+      var linkObj = linkClickConfig.Links;
+      var linkLength = linkObj.length;
+
+      var addEvent = function (currentEl, linkCategory, linkType) {
+        var data = linkClickConfig;
+        data.LinkCategory = linkCategory;
+        data.LinkType = linkType;
+        delete data.Links;
+
+        currentEl.addEventListener("click", function (e) {
+          const d = { pages: data };
+          var w = new t(),
+            cookie = instance.cookie.getCookie(k);
+          if (cookie) {
+            d.websiteId = w.getWebsiteId();
+            d[k] = cookie;
+            instance.iPostEventHandler.send(d, instance.request, instance.response);
+          }
+        });
+      };
+    };
+
+    if (linkLength > 0) {
+      for (var count = 0; count < linkLength; count++) {
+        var link = linkObj[count];
+        if (link.type === 'ID') {
+          try {
+            var el = f.getElementById(link.value);
+            if (typeof el === 'object' && el !== null) {
+              addEvent(el, link.linkCategory, link.linkType);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+
+        }
+        if (link.type === 'Class') {
+          try {
+            var el = f.getElementsByClassName(link.value);
+            if (typeof el === 'object' && el !== null) {
+              for (var i = 0; i < el.length; i++) {
+                addEvent(el[i], link.linkCategory, link.linkType);
+              }
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        if (link.type === 'Query Selector') {
+          try {
+            var el = eval(link.value);
+            if (typeof el === 'object' && el !== null) {
+              if (el.length && el.length > 0) {
+                for (var i = 0; i < el.length; i++) {
+                  addEvent(el[i], link.linkCategory, link.linkType);
+                }
+              }
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+    }
+  };
+  (function () {
     j.iPostAnalytic = new i();
     j.iPostAnalytic.start();
   })()
