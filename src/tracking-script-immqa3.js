@@ -148,7 +148,7 @@ const init = function(j, f) {
   };
   t.prototype.getFunnelTrackingSetting = function () {
     var funnels = [];
-    if(this.pageUrl == '/products') {
+    if(this.pageUrl.indexOf('/products') !== -1) {
       var funnel = {};
       funnel.funnelEntry = 'start';
       funnel.isFunnelTrackingOn = true;
@@ -171,7 +171,7 @@ const init = function(j, f) {
       };
       funnels.push(funnel);
     }
-    if(this.pageUrl.indexOf('/cart', this.pageUrl.length - '/cart'.length) !== -1) {
+    if(this.pageUrl.indexOf('/cart') !== -1) {
       var funnel = {};
       funnel.funnelEntry = 'end';
       funnel.isFunnelTrackingOn = true;
