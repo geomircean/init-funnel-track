@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/init-funnel-track/static/css/main.fa12922c.css",
-    "main.js": "/init-funnel-track/static/js/main.a6e9465a.js",
+    "main.js": "/init-funnel-track/static/js/main.4c9efcaf.js",
     "index.html": "/init-funnel-track/index.html",
     "main.fa12922c.css.map": "/init-funnel-track/static/css/main.fa12922c.css.map",
-    "main.a6e9465a.js.map": "/init-funnel-track/static/js/main.a6e9465a.js.map"
+    "main.4c9efcaf.js.map": "/init-funnel-track/static/js/main.4c9efcaf.js.map"
   },
   "entrypoints": [
     "static/css/main.fa12922c.css",
-    "static/js/main.a6e9465a.js"
+    "static/js/main.4c9efcaf.js"
   ]
 }
