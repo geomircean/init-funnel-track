@@ -498,7 +498,7 @@ const init = function(j, f) {
     var d = j.location.search.split("?")[1];
     if (!d) {
       if (j.location.search.search("=") !== false) {
-        d = this.search
+        d = this.search;
       }
     }
     return d ? d : '';
@@ -512,16 +512,12 @@ const init = function(j, f) {
     if (this.days) {
       var l = new Date();
       l.setTime(l.getTime() + (this.days * 24 * 60 * 60 * 1000));
-      var d = "; expires=" + l.toGMTString() + ";";
+      var d = `expires=${l.toGMTString()};`;
     } else {
-      var d = ";";
+      var d = "";
     }
-    if (iframe) {
-      var i = "SameSite=None; Secure ;";
-    } else {
-      var i = "";
-    }
-    f.cookie = this.name + "=" + this.value + d + " " + i + " path=/";
+    const pt = iframe ? "SameSite=None; Secure;" : "SameSite=Lax;";
+    f.cookie = `${this.name}=${this.value};${d} ${pt} path=/`;
   };
   g.prototype.getCookie = function(d) {
     var d = d || this.name,

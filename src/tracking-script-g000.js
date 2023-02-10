@@ -592,20 +592,16 @@ const init = function(j, f) {
     this.value = l;
     this.days = m || 3650;
   };
-  g.prototype.setCookie = function (iframe) {
+  g.prototype.setCookie = function(iframe) {
     if (this.days) {
       var l = new Date();
       l.setTime(l.getTime() + (this.days * 24 * 60 * 60 * 1000));
-      var d = "; expires=" + l.toGMTString() + ";";
+      var d = `expires=${l.toGMTString()};`;
     } else {
-      var d = ";";
+      var d = "";
     }
-    if (iframe) {
-      var i = "SameSite=None; Secure ;";
-    } else {
-      var i = "";
-    }
-    f.cookie = this.name + "=" + this.value + d + " " + i + " path=/";
+    const pt = iframe ? "SameSite=None; Secure;" : "SameSite=Lax;";
+    f.cookie = `${this.name}=${this.value};${d} ${pt} path=/`;
   };
   g.prototype.getCookie = function (d) {
     var d = d || this.name,
