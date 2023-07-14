@@ -1,6 +1,6 @@
 /* eslint-disable */
 const init = function(j, f) {
-  var b = 'https://immqa3.devnest.ro/weh/handler/event_data/save/',
+  var b = 'http://immqa3.devnest.ro/weh/handler/event_data/save/',
     k = "iqs",
     t = function () {
       this.pageUrl = j.location.href;
@@ -136,25 +136,156 @@ const init = function(j, f) {
       this.response = {};
     };
   t.prototype.getWebsiteId = function () {
-    return 30;
+    return 1;
   };
   t.prototype.getConversionTrackingSetting = function () {
     var conversion = {};
-    conversion.isConversionTrackingOn = false;
+    conversion.isConversionTrackingOn = true;
     conversion.conversionType = '';
+    if(this.pageUrl == '/thanks') {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/thanks';
+      conversion.conversionType = 'custom';
+      conversion.eventTitle = function() {
+        try { return document.getElementById("conversionTitle").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.conversionDate = function() {
+        try {   return document.getElementById("conversionDate").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.details = function() {
+        try { const details = [];
+          const detailObject = {};
+          detailObject.Title = 'some title';
+          return details; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl.indexOf('/about') !== -1) {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/about';
+      conversion.conversionType = 'custom';
+      conversion.eventTitle = function() {
+        try { return document.getElementById("conversionTitle").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.conversionDate = function() {
+        try {   return document.getElementById("conversionDate").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.details = function() {
+        try { const details = [];
+          const detailObject = {};
+          detailObject.Title = 'some title';
+          return details; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl == '/product') {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/product';
+      conversion.conversionType = 'custom';
+      conversion.eventTitle = function() {
+        try { return document.getElementById("conversionTitle").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.conversionDate = function() {
+        try { return document.getElementById("conversionDate").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.details = function() {
+        try { const details = [];
+          const detailObject = {};
+          detailObject.Title = 'some title';
+          return details; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl.indexOf('/cart') !== -1) {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/cart';
+      conversion.conversionType = 'custom';
+      conversion.eventTitle = function() {
+        try { return document.getElementById("conversionTitle").innerText;
+        }
+        catch (e) { return ''; }
+      };
+      conversion.conversionDate = function() {
+        try { return document.getElementById("conversionDate").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.details = function() {
+        try { const details = [];
+          const detailObject = {};
+          detailObject.Title = 'some title';
+          return details; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl == '/thanks1') {
+      conversion.isConversionTrackingOn = true;
+      conversion.pageName = '/thanks1';
+      conversion.conversionType = 'custom';
+      conversion.eventTitle = function() {
+        try { return document.getElementById("conversionTitle").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.conversionDate = function() {
+        try {   return document.getElementById("conversionDate").innerText; }
+        catch (e) { return ''; }
+      };
+      conversion.details = function() {
+        try { const details = [];
+          const detailObject = {};
+          detailObject.Title = 'some title';
+          return details; }
+        catch (e) { return ''; }
+      };
+    }
 
 
     return conversion;
   };
   t.prototype.getFunnelTrackingSetting = function () {
     var funnels = [];
-    if(this.pageUrl.indexOf('/products') !== -1) {
+    if(this.pageUrl.indexOf('/about2') !== -1) {
       var funnel = {};
       funnel.funnelEntry = 'start';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 15;
+      funnel.funnelId = 18;
       funnel.funnelName = function(){
-        try { return 'Abandoned'; }
+        try { return 'AboutToCart'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/cart2') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 18;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/about') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 34;
+      funnel.funnelName = function(){
+        try { return 'AboutToCart2'; }
         catch (e) { return ''; }
       };
       funnel.items = function() {
@@ -175,16 +306,16 @@ const init = function(j, f) {
       var funnel = {};
       funnel.funnelEntry = 'end';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 15;
+      funnel.funnelId = 34;
       funnels.push(funnel);
     }
-    if(this.pageUrl == '/c') {
+    if(this.pageUrl.indexOf('/cart') !== -1) {
       var funnel = {};
       funnel.funnelEntry = 'start';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 21;
+      funnel.funnelId = 24;
       funnel.funnelName = function(){
-        try { return 'Abbandoned Git2'; }
+        try { return 'AboutToCartDuplicate'; }
         catch (e) { return ''; }
       };
       funnel.items = function() {
@@ -201,20 +332,20 @@ const init = function(j, f) {
       };
       funnels.push(funnel);
     }
-    if(this.pageUrl == '/about') {
+    if(this.pageUrl.indexOf('/about', this.pageUrl.length - '/about'.length) !== -1) {
       var funnel = {};
       funnel.funnelEntry = 'end';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 21;
+      funnel.funnelId = 24;
       funnels.push(funnel);
     }
-    if(this.pageUrl == '/about') {
+    if(this.pageUrl.indexOf('/checkout') !== -1) {
       var funnel = {};
       funnel.funnelEntry = 'start';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 32;
+      funnel.funnelId = 19;
       funnel.funnelName = function(){
-        try { return 'AboutToCart'; }
+        try { return 'CheckoutToThankYou'; }
         catch (e) { return ''; }
       };
       funnel.items = function() {
@@ -229,22 +360,202 @@ const init = function(j, f) {
       funnel.abandonedURL = function() {
         return '';
       };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/thank-you') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 19;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/about1') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 31;
+      funnel.funnelName = function(){
+        try { return 'gabi test'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/cart12') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 31;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == 'fghjhkjk') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 30;
+      funnel.funnelName = function(){
+        try { return 'hhjgfghgjhkjl'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == 'yfghjkhljknkj') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 30;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/init-funnel-track') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 20;
+      funnel.funnelName = function(){
+        try { return 'HomeToCheckout'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/checkout') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 20;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/about12') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 28;
+      funnel.funnelName = function(){
+        try { return 'Lorem ips7m dolor sit '; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/cart13', this.pageUrl.length - '/cart13'.length) !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 28;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/about12') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 23;
+      funnel.funnelName = function(){
+        try { return 'Lorem ips7m dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/cart12') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 23;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/about1') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 22;
+      funnel.funnelName = function(){
+        try { return 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque '; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/cart1') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 22;
       funnels.push(funnel);
     }
     if(this.pageUrl == '/cart') {
       var funnel = {};
-      funnel.funnelEntry = 'end';
-      funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 32;
-      funnels.push(funnel);
-    }
-    if(this.pageUrl == '/about') {
-      var funnel = {};
       funnel.funnelEntry = 'start';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 33;
+      funnel.funnelId = 25;
       funnel.funnelName = function(){
-        try { return 'AboutToProduct'; }
+        try { return 'new'; }
         catch (e) { return ''; }
       };
       funnel.items = function() {
@@ -265,7 +576,307 @@ const init = function(j, f) {
       var funnel = {};
       funnel.funnelEntry = 'end';
       funnel.isFunnelTrackingOn = true;
-      funnel.funnelId = 33;
+      funnel.funnelId = 25;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/product') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 26;
+      funnel.funnelName = function(){
+        try { return 'New2'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/cart') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 26;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/product1') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 29;
+      funnel.funnelName = function(){
+        try { return 'New2106'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/about3') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 29;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/home') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 27;
+      funnel.funnelName = function(){
+        try { return 'New3'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/product') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 27;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/products') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 17;
+      funnel.funnelName = function(){
+        try { return 'ProductToAbout'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl.indexOf('/about') !== -1) {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 17;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/prodasda') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 16;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abandoned Git6'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/adas') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 16;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dadsada') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 1;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dasdas') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 1;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/a') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 2;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git2'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dsadsat') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 2;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/dasdsa') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 3;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git3'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/adasdas') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 3;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/b') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 4;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git4'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/about') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 4;
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/c') {
+      var funnel = {};
+      funnel.funnelEntry = 'start';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 14;
+      funnel.funnelName = function(){
+        try { return '[Obsolete]Abbandoned Git5'; }
+        catch (e) { return ''; }
+      };
+      funnel.items = function() {
+        return '';
+      };
+      funnel.details = function() {
+        return '';
+      };
+      funnel.htmlContent = function() {
+        return '';
+      };
+      funnel.abandonedURL = function() {
+        return '';
+      };
+      funnels.push(funnel);
+    }
+    if(this.pageUrl == '/about') {
+      var funnel = {};
+      funnel.funnelEntry = 'end';
+      funnel.isFunnelTrackingOn = true;
+      funnel.funnelId = 14;
       funnels.push(funnel);
     }
 
@@ -274,13 +885,62 @@ const init = function(j, f) {
   };
   t.prototype.getPageTrackingSetting = function () {
     var page = {};
-    //##REPLACE-WITH-PAGE-TRACKING-SETTINGS##//
+    page.isPageTrackingOn = true;
+    if(this.pageUrl == '/thank') {
+      page.pageCategory = function() {
+        try { return 'home'; }
+        catch (e) { return ''; }
+      };
+      page.pageType = function() {
+        try { return 'LANDING'; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl == '/about') {
+      page.pageCategory = function() {
+        return '';
+      };
+      page.pageType = function() {
+        return '';
+      };
+    }
+    if(this.pageUrl == '/thank-3') {
+      page.pageCategory = function() {
+        try { return 'home'; }
+        catch (e) { return ''; }
+      };
+      page.pageType = function() {
+        try { return 'LANDING'; }
+        catch (e) { return ''; }
+      };
+    }
+    if(this.pageUrl == '/thanks-4') {
+      page.pageCategory = function() {
+        try { return 'buy'; }
+        catch (e) { return ''; }
+      };
+      page.pageType = function() {
+        return '';
+      };
+    }
+    if(this.pageUrl == 'dashboard') {
+      page.pageCategory = function() {
+        try { return 'home'; }
+        catch (e) { return ''; }
+      };
+      page.pageType = function() {
+        try { return 'LANDING'; }
+        catch (e) { return ''; }
+      };
+    }
+
 
     return page;
   };
   t.prototype.getLinkClickSetting = function () {
     var page = {};
-    //##REPLACE-WITH-PAGE-TRACKING-CLICK-EVENT-SETTINGS##//
+    page.isPageTrackingOn = true;
+
 
     return page;
   };
@@ -371,7 +1031,7 @@ const init = function(j, f) {
     return false;
   };
   e.prototype.getWebsiteURL = function () {
-    return 'https://geomircean.github.io';
+    return 'http://www.github.io';
   };
   e.prototype.getCrossDomainURL = function (baseURL, key, value) {
     var separator = baseURL.indexOf('?') !== -1 ? "&" : "?";
