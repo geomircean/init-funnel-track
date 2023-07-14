@@ -1,6 +1,6 @@
 /* eslint-disable */
 const init = function(j, f) {
-  var b = 'http://immqa3.devnest.ro/weh/handler/event_data/save/',
+  var b = 'https://immqa3.devnest.ro/weh/handler/event_data/save/',
     k = "iqs",
     t = function () {
       this.pageUrl = j.location.href;
