@@ -601,9 +601,9 @@ const init = function(j, f) {
       var d = ";";
     }
     if (iframe) {
-      var i = "SameSite=None; Secure ;";
+      var i = "SameSite=None; Secure;";
     } else {
-      var i = "";
+      var i = "SameSite=Lax;";
     }
     f.cookie = this.name + "=" + this.value + d + " " + i + " path=/";
   };
@@ -653,7 +653,7 @@ const init = function(j, f) {
     return this.blobExist;
   };
   e.prototype.isCrossDomainTrackingEnabled = function () {
-    return false;
+    return true;
   };
   e.prototype.getWebsiteURL = function () {
     return 'https://geomircean.github.io';
